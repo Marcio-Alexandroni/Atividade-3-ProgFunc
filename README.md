@@ -53,3 +53,48 @@ Entregáveis:
  Arquivo README.md com instruções para instalação, execução e teste da API.
  Testes com pelo menos 20 pedidos simultâneos, mostrando o tratamento de concorrência e
 rollback em falhas.
+
+## Como Usar o Projeto
+
+### 1. Configuração do Ambiente
+1. Certifique-se de ter o Python 3.x instalado.
+2. Instale as dependências do projeto executando:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Configure o banco de dados MySQL e atualize as credenciais no arquivo `database.py`.
+
+### 2. Scripts Disponíveis
+- **`populate.py`**: Popula o banco de dados com dados iniciais.
+  ```bash
+  python projeto/populate.py
+  ```
+- **`limpa_banco.py`**: Limpa completamente o banco de dados.
+  ```bash
+  python projeto/limpa_banco.py
+  ```
+- **`concurrency.py`**: Simula o processamento de múltiplos pedidos simultaneamente.
+  ```bash
+  python projeto/concurrency.py
+  ```
+
+### 3. Como Executar o Servidor
+1. Inicie o servidor Flask:
+   ```bash
+   python projeto/app.py
+   ```
+2. Acesse os endpoints da API:
+   - `POST /pedido`: Simula a criação de um novo pedido.
+   - `GET /relatorio`: Retorna os pedidos processados com sucesso.
+   - `GET /status`: Retorna o número de pedidos concluídos.
+
+### 4. Testes
+- Para testar o processamento de 20 pedidos simultâneos:
+  1. Limpe o banco de dados:
+     ```bash
+     python projeto/limpa_banco.py
+     ```
+  2. Execute o script de concorrência:
+     ```bash
+     python projeto/concurrency.py
+     ```
