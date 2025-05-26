@@ -1,5 +1,5 @@
 from database import engine, SessionLocal, Base
-from models import Cliente, Produto, Pedido, ItemPedido
+from models import Cliente, Produto
 
 def main():
     Base.metadata.create_all(engine)
@@ -7,9 +7,9 @@ def main():
     # só insere se não houver dados
     if not session.query(Cliente).first():
         session.add_all([
-            Cliente(nome="Paulo",  saldo=500.0),
-            Cliente(nome="Cesar",    saldo=300.0),
-            Cliente(nome="Marcio",  saldo=800.0),
+            Cliente(nome="Alice",  saldo=500.0),
+            Cliente(nome="Bob",    saldo=300.0),
+            Cliente(nome="Clara",  saldo=800.0),
         ])
     if not session.query(Produto).first():
         session.add_all([
@@ -20,16 +20,5 @@ def main():
     session.commit()
     session.close()
 
-def limpar_banco():
-    session = SessionLocal()
-    session.query(ItemPedido).delete()
-    session.query(Pedido).delete()
-    session.query(Produto).delete()
-    session.query(Cliente).delete()
-    session.commit()
-    session.close()
-
 if __name__ == "__main__":
     main()
-    # limpar_banco()
-    # print("Banco de dados limpo.")
